@@ -3,7 +3,7 @@
 #     File Name           :     TAXI_1.pl
 #     Created By          :     xd
 #     Creation Date       :     [2014-08-15 16:41]
-#     Last Modified       :     [2014-08-15 17:52]
+#     Last Modified       :     [2014-08-15 18:11]
 #     Description         :     pick out GPS points of same vehicle 
 #################################################################################
 
@@ -19,6 +19,7 @@ open my $info, $file or die "Could not open $file: $!";
 # for 1.6G (7727 files) r: 174.719, u: 124.824, s: 47.719
 while( my $line = <$info> )  {   
      my @values = split(',', $line);
+     # this will append newline to write
      open(my $fh, '>>', "/run/shm/ByCars/$values[2]") or die "Could not open file '$filename' $!";
      say $fh $line;
      close $fh;

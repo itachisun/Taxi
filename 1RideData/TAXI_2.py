@@ -3,7 +3,7 @@
 #     File Name           :     TAXI_2.py
 #     Created By          :     xd
 #     Creation Date       :     [2014-08-15 15:28]
-#     Last Modified       :     [2014-08-15 21:22]
+#     Last Modified       :     [2014-08-15 22:01]
 #     Description         :     process samples and combine into Ride 
 #################################################################################
 
@@ -122,7 +122,7 @@ for i in f.split('\n'):
     SampleC.PassengerState = fields[8]
 
     # output for visualization
-    # print SampleC.GPSTime, SampleC.GPSSpeed, SampleC.GPSLongitude, SampleC.GPSLatitude, SampleC.GPSDirection
+    # print(SampleC.GPSTime, SampleC.GPSSpeed, SampleC.GPSLongitude, SampleC.GPSLatitude, SampleC.GPSDirection)
 
     # record a ride
     # add this GPS point

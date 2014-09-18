@@ -3,9 +3,13 @@
 #     File Name           :     TAXI_2.py
 #     Created By          :     xd
 #     Creation Date       :     [2014-08-15 15:28]
-#     Last Modified       :     [2014-08-15 22:01]
+#     Last Modified       :     [2014-09-07 18:16]
 #     Description         :     process samples and combine into Ride 
 #################################################################################
+# Changelog
+# Sun Aug 31 14:49:38 CST 2014 note that the last ride might be omitted, because the state not changed
+#################################################################################
+# process 30G, 4.5 hours. generate 909MB 
 
 from __future__ import print_function
 
@@ -41,8 +45,8 @@ class RawDataEntry:
     GPSTime = ''
     GPSLongitude = float
     GPSLatitude = float
-    GPSSpeed = int
-    GPSDirection = int
+    GPSSpeed = float
+    GPSDirection = float
     # PassengerState 0: available, 1: occupied
     PassengerState = int
     ReadFlag = ''
@@ -117,8 +121,8 @@ for i in f.split('\n'):
     SampleC.GPSTime = fields[3]
     SampleC.GPSLongitude = float(fields[4])
     SampleC.GPSLatitude = float(fields[5])
-    SampleC.GPSSpeed = fields[6]
-    SampleC.GPSDirection = int(fields[7])
+    SampleC.GPSSpeed = float(fields[6])
+    SampleC.GPSDirection = float(fields[7])
     SampleC.PassengerState = fields[8]
 
     # output for visualization
@@ -131,8 +135,8 @@ for i in f.split('\n'):
     # as long as it's not first run, update ride with this sample
     if SampleA.GPSTime != '':
         distance = haversine(SampleC.GPSLongitude, SampleC.GPSLatitude, SampleA.GPSLongitude, SampleA.GPSLatitude)
-        timeA = int(datetime.strptime(SampleA.GPSTime, '%Y-%m-%d %H:%M:%S').strftime('%s'))
-        timeC = int(datetime.strptime(SampleC.GPSTime, '%Y-%m-%d %H:%M:%S').strftime('%s'))
+        timeA = int(datetime.strptime(SampleA.GPSTime, '%Y-%m-%d %H:%M:%S.%f').strftime('%s'))
+        timeC = int(datetime.strptime(SampleC.GPSTime, '%Y-%m-%d %H:%M:%S.%f').strftime('%s'))
         duration = timeC - timeA
         # not likely to happen, but still
         # also, good habit for testing

@@ -18,6 +18,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+# https://github.com/aivarsk/scrapy-proxies
+
 import re
 import random
 import base64
